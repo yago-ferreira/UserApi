@@ -38,7 +38,9 @@ Este é um projeto de lista de usuários que utiliza várias bibliotecas para ap
 
 ## Instruções de Uso
 
-1. Clone o repositório.
+1. Clone o repositório ou acesse https://yago-ferreira.github.io/UserApi/
 2. Abra o arquivo `index.html` em um navegador da web.
 3. Explore a lista de usuários e utilize os recursos de classificação, pesquisa e exportação.
+
+
 
