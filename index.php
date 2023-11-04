@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- dataTables -->
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <!--font awesome con CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 30px;
+        /* Adicionar espaço de preenchimento à tabela */
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="https://github.com/yago-ferreira?tab=repositories" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+
+            <a class="navbar-brand" href="https://www.linkedin.com/in/yago-f-51730b137/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+
+            <span class="navbar-text">
+                <i class="fas fa-envelope"></i> yago.rox@hotmail.com
+            </span>
+            <span class="navbar-text">
+            <i class="fas fa-phone"></i>
+            <i class="fab fa-whatsapp" ></i>
+                (31)99283-3367
+            </span>
+        </div>
+    </nav>
+
+    <div class="mt-5">
+        <h1>Lista de Usuários</h1>
+        <div class="table-responsive">
+            <table id="tabela-usuarios" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Senha</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Nome de Usuário</th>
+                        <th>Email</th>
+                        <th>Avatar</th>
+                        <th>Gênero</th>
+                        <th>Telefone</th>
+                        <th>Seguro Social</th>
+                        <th>Data de Nascimento</th>
+                        <th>Emprego</th>
+                        <th>Endereço</th>
+                        <th>Cartão de Crédito</th>
+                        <th>Inscrição</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+    <!-- Modal  Endereço-->
+    <div class="modal fade" id="modalEndereco" tabindex="-1" role="dialog" aria-labelledby="modal_endereco" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_endereco">Endereço</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="city">Cidade:</label>
+                            <input type="text" class="form-control" id="city" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="street_name">Nome da Rua:</label>
+                            <input type="text" class="form-control" id="street_name" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="street_address">Endereço da Rua:</label>
+                            <input type="text" class="form-control" id="street_address" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="zip_code">Código Postal:</label>
+                            <input type="text" class="form-control" id="zip_code" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="state">Estado:</label>
+                            <input type="text" class="form-control" id="state" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="country">País:</label>
+                            <input type="text" class="form-control" id="country" disabled>
+                        </div>
+                        <!-- Coordenadas -->
+                        <div class="col-12">
+                            <label for="coordinates" style="text-align: center; display: block; margin: 0 auto;">Coordenadas:</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="coordinates_lat">Latitude:</label>
+                                    <input type="text" class="form-control" id="coordinates_lat" disabled>
+                                </div>
+                                <div class="col-6">
+                                    <label for="coordinates_lng">Longitude:</label>
+                                    <input type="text" class="form-control" id="coordinates_lng" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal  Inscrição-->
+    <div class="modal fade" id="modalInscricao" tabindex="-1" role="dialog" aria-labelledby="inscricao" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inscricao">Endereço</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="plan">Plano:</label>
+                            <input type="text" class="form-control" id="plan" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="status">Status:</label>
+                            <input type="text" class="form-control" id="status" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="payment_method">Método de pagamento:</label>
+                            <input type="text" class="form-control" id="payment_method" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="term">Termo:</label>
+                            <input type="text" class="form-control" id="term" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var dt = $('#tabela-usuarios').DataTable({
+                processing: true,
+                responsive: true,
+                dom: 'Bfrtip', // Mostra os botões na parte superior da tabela
+                ajax: {
+                    url: "https://random-data-api.com/api/v2/users?size=100",
+                    dataSrc: ""
+                },
+                buttons: [{
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i> ',
+                    titleAttr: 'Exportar excel',
+                    className: 'btn-custom-csv btn btn-success exportar'
+                }, ],
+                columns: [{
+                        data: "id",
+                        orderable: false,
+                        visible: false
+                    },
+                    {
+                        data: "password"
+                    },
+                    {
+                        data: "first_name"
+                    },
+                    {
+                        data: "last_name"
+                    },
+                    {
+                        data: "username"
+                    },
+                    {
+                        data: "email"
+                    },
+                    {
+                        data: "avatar",
+                        render: function(data, type, full, meta) {
+                            if (type === 'display') {
+                                return '<img src="' + data + '" alt="Avatar" width="50" height="50">';
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        data: "gender"
+                    },
+                    {
+                        data: "phone_number"
+                    },
+                    {
+                        data: "social_insurance_number"
+                    },
+                    {
+                        data: "date_of_birth"
+                    },
+                    {
+                        data: "employment.title"
+                    },
+                    {
+                        data: "address",
+                        render: function(data, type, full, meta) {
+                            if (type === 'display') {
+                                return '<button class="btn btn-primary open-address-details" data-toggle="modal" data-target="#modalEndereco"><i class="fas fa-info-circle"></i></button>';
+                            }
+                            return data.city;
+                        }
+                    },
+                    {
+                        data: "credit_card.cc_number"
+                    },
+                    {
+                        data: "subscription",
+                        render: function(data, type, full, meta) {
+                            if (type === 'display') {
+                                return '<button class="btn btn-primary open-subscription-details" data-toggle="modal" data-target="#modalInscricao"><i class="fas fa-info-circle"></i></button>';
+                            }
+                            return data.plan;
+                        }
+                    },
+                ],
+                order: [
+                    [2, 'asc'] //ordena a coluna first_name
+                ],
+
+                language: {
+                    lengthMenu: "Exibir _MENU_ linhas por página",
+                    zeroRecords: "Nenhum Usuário cadastrado",
+                    info: "Página _PAGE_ de _PAGES_",
+                    infoEmpty: "Nenhum registro encontrado",
+                    infoFiltered: "(Filtrado de _MAX_ registros totais)",
+                    search: "Pesquisar Usuário",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo",
+                    },
+                }
+            });
+
+            var elemento = document.querySelector(".exportar");
+
+            if (elemento) {
+                elemento.classList.remove('dt-button');
+            }
+
+
+            dt.on('click', '.open-address-details', function() {
+                var data = dt.row($(this).parents("tr")).data();
+                var dadosEndereco = data.address;
+                $("#city").val(dadosEndereco.city);
+                $("#street_name").val(dadosEndereco.street_name);
+                $("#street_address").val(dadosEndereco.street_address);
+                $("#zip_code").val(dadosEndereco.zip_code);
+                $("#state").val(dadosEndereco.state);
+                $("#country").val(dadosEndereco.country);
+                $("#coordinates_lat").val(dadosEndereco.coordinates.lat);
+                $("#coordinates_lng").val(dadosEndereco.coordinates.lng);
+            });
+
+            dt.on('click', '.open-subscription-details', function() {
+                var data = dt.row($(this).parents("tr")).data();
+                var dadosInscricao = data.subscription;
+
+                $("#plan").val(dadosInscricao.plan);
+                $("#status").val(dadosInscricao.status);
+                $("#payment_method").val(dadosInscricao.payment_method);
+                $("#term").val(dadosInscricao.term);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
